@@ -48,9 +48,15 @@ function notSameHour(d1: Date, d2: Date) {
     return d1.getHours() != d2.getHours() && (d1 < d2 || d1 > d2)
 }
 
+function hashString(inputString: string) {
+  const hash = crypto.createHash('sha256'); // You can choose other algorithms as well
+  hash.update(inputString);
+  return hash.digest('hex'); // Return the hash in hexadecimal format
+}
+
 export async function POST({ request, getClientAddress, url }) {
     const rlbypass = url.searchParams.get("rlbypass") == RATELIMIT_BYPASS_TOKEN;
-    const iphash = Bun.hash(getClientAddress()).toString(16)
+    const iphash = hashString(getClientAddress())
     if (!rlbypass) {
         if (notSameHour(LAST_USAGE.get(iphash) ?? new Date(0), new Date())) RATELIMIT_USAGE.set(iphash, 0)
         if (notSameHour(LAST_UPLOAD, new Date())) RECENT_UPLOADS = 0
