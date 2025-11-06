@@ -35,6 +35,7 @@ import { RATELIMIT_BYPASS_TOKEN } from '$env/static/private';
 import { addLogEntry } from '$lib/database.js';
 import { notifyInfo, notifyWarn, sendNtfyNotification } from '$lib/notifications.js';
 import { json } from '@sveltejs/kit';
+import crypto from "crypto";
 
 const MAX_USE_PER_HOUR = 5
 const OVERALL_USE_PER_HOUR = 10
