@@ -31,7 +31,7 @@
 // Sie sollten eine Kopie der GNU General Public License zusammen mit
 // VLANT-LogUp erhalten haben. Wenn nicht, siehe <https://www.gnu.org/licenses/>.
 
-import adapter from "svelte-adapter-bun";
+import adapter from "@sveltejs/adapter-node";
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
